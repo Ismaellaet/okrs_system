@@ -1,15 +1,9 @@
 from django import forms
 
-from .models import Objective, KeyResult
+from .models import OKR
 
 
-class ObjectiveModelForm(forms.ModelForm):
+class OKRModelForm(forms.ModelForm):
     class Meta:
-        model = Objective
-        fields = ['member', 'objective_text']
-
-
-class KeyResultModelForm(forms.ModelForm):
-    class Meta:
-        model = KeyResult
-        fields = ['kr_text']
+        model = OKR
+        fields = '__all__'

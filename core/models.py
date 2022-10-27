@@ -2,23 +2,20 @@ from django.db import models
 
 
 class Member(models.Model):
-    member_name = models.CharField('Name', max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
-        return self.member_name
+        return self.name
 
 
-class Objective(models.Model):
-    member = models.ForeignKey(Member, on_delete=models.CASCADE)
-    objective_text = models.CharField('Objective', max_length=150)
-
-    def __str__(self):
-        return self.objective_text
-
-
-class KeyResult(models.Model):
-    objective = models.ForeignKey(Objective, on_delete=models.CASCADE)
-    kr_text = models.CharField('Key Result', max_length=200, blank=True)
+class OKR(models.Model):
+    member = models.ForeignKey(to=Member, on_delete=models.CASCADE)
+    objective = models.CharField(max_length=150)
+    key_result_1 = models.CharField(verbose_name='key result 1', max_length=200)
+    key_result_2 = models.CharField(verbose_name='key result 2', max_length=200, blank=True, null=True)
+    key_result_3 = models.CharField(verbose_name='key result 3', max_length=200, blank=True, null=True)
+    key_result_4 = models.CharField(verbose_name='key result 4', max_length=200, blank=True, null=True)
+    key_result_5 = models.CharField(verbose_name='key result 5', max_length=200, blank=True, null=True)
 
     def __str__(self):
-        return self.kr_text
+        return self.objective

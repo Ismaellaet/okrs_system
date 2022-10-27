@@ -14,12 +14,9 @@
         <h1>OKRS Registration</h1>
         {% bootstrap_messages %}
 
-        <form action="{% url 'core:registration' %}" method="post" class="form" autocomplete="off">
+        <form action="{% url 'core:register' %}" method="post" class="form" autocomplete="off">
             {% csrf_token %}
-            {% bootstrap_form objective_form %}
-            {% for form in kr_forms %}
-                {%bootstrap_form form %}
-            {% endfor %}
+            {% bootstrap_form form %}
             {% buttons %}
                 <button type="submit" class="btn btn-primary">Send</button>
             {% endbuttons %}
