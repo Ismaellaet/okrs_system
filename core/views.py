@@ -6,6 +6,7 @@ from .forms import OKRModelForm
 
 def register(request):
     form = OKRModelForm()
+    status = 201
 
     if request.method == 'POST':
         form = OKRModelForm(request.POST)
