@@ -8,27 +8,25 @@ class RegistrationTestCase(TestCase):
     def setUp(self):
         self.member = mommy.make('Member')
         self.data = {
-            'member': '1',
-            'objective_text': 'My objective test',
-            'kr_text': [
-                'My key result 1',
-                'My key result 2',
-                'My key result 3',
-                'My key result 4',
-                'My key result 5',
-            ]
+            'member': self.member.id,
+            'objective': 'Objective Test',
+            'key_result_1': 'KR 1 Test',
+            'key_result_2': 'KR 2 Test',
+            'key_result_3': 'KR 3 Test',
+            'key_result_4': 'KR 4 Test',
+            'key_result_5': 'KR 5 Test'
         }
         self.client = Client()
 
-    def test_registration(self):
-        request = self.client.post(reverse('core:registration'), data=self.data)
-        self.assertEquals(request.status_code, 200)
+    def test_register(self):
+        response = self.client.post(reverse('core:register'), data=self.data)
+        self.assertEquals(response.status_code, 201)
 
-    def test_registration_error(self):
+    def test_register_error(self):
         data = {
-            'member': '1',
-            'objective_text': ' ',
+            'member': self.member.id,
+            'objective_text': '',
             'kr_text': []
         }
-        request = self.client.post(reverse('core:registration'), data=data)
-        self.assertRaises(Exception)
+        response = self.client.post(reverse('core:register'), data=data)
+        self.assertEquals(response.status_code, 200)
