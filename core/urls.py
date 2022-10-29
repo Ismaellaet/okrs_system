@@ -1,9 +1,10 @@
 from django.urls import path
 
-from .views import register
+from .views import IndexView, register
 
 
 app_name = 'core'
 urlpatterns = [
-    path('', register, name='register')
+    path('', IndexView.as_view(), name='index'),
+    path('register/', register, name='register')
 ]

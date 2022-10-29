@@ -1,27 +1,39 @@
+{% load static %}
 {% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'core/table.css' %}">
     {% bootstrap_css %}
     <title>OKRS</title>
 </head>
 <body>
-    <div class="container">
-        <h1>OKRS Registration</h1>
-        {% bootstrap_messages %}
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Member</th>
+            <th>Objective</th>
+            <th>Key Result 1</th>
+            <th>Key Result 2</th>
+            <th>Key Result 3</th>
+            <th>Key Result 4</th>
+            <th>Key Result 5</th>
+        </tr>
+        {% for okr in okrs %}
+            <tr>
+                <td data-column="Member">{{ okr.member }}</td>
+                <td data-column="Objective">{{ okr.objective }}</td>
+                <td data-column="Key Result 1">{{ okr.key_result_1 }}</td>
+                <td data-column="Key Result 2">{{ okr.key_result_2 }}</td>
+                <td data-column="Key Result 3">{{ okr.key_result_3 }}</td>
+                <td data-column="Key Result 4">{{ okr.key_result_4 }}</td>
+                <td data-column="Key Result 5">{{ okr.key_result_5 }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 
-        <form action="{% url 'core:register' %}" method="post" class="form" autocomplete="off">
-            {% csrf_token %}
-            {% bootstrap_form form %}
-            {% buttons %}
-                <button type="submit" class="btn btn-primary">Send</button>
-            {% endbuttons %}
-        </form>
-    </div>
-{% bootstrap_javascript jquery='full' %}
+    {% bootstrap_button "Register" button_class="btn btn-success" size="large" href="register"%}
 </body>
 </html>

@@ -30,3 +30,7 @@ class RegistrationTestCase(TestCase):
         }
         response = self.client.post(reverse('core:register'), data=data)
         self.assertEquals(response.status_code, 200)
+
+    def test_index_view(self):
+        response = self.client.get(reverse('core:index'))
+        self.assertEquals(response.status_code, 200)

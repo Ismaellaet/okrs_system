@@ -1,0 +1,28 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% bootstrap_css %}
+    <title>OKRS</title>
+</head>
+<body>
+    <div class="container">
+        <h1>OKRS Registration</h1>
+        {% bootstrap_messages %}
+
+        <form action="{% url 'core:register' %}" method="post" class="form" autocomplete="off">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+                <a class="btn btn-danger" href="{% url 'core:index' %}">Back</a>
+                <button type="submit" class="btn btn-primary">Send</button>
+            {% endbuttons %}
+        </form>
+    </div>
+{% bootstrap_javascript jquery='full' %}
+</body>
+</html>
